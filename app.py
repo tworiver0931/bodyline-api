@@ -11,7 +11,7 @@ import tempfile
 
 app = FastAPI()
 
-model_dir = 'u2net_human_seg.pth'
+model_dir = 'u2net_human_seg'
 session = new_session(model_dir)
 
 def extract_edges(data, session):
