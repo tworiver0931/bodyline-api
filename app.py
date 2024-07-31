@@ -43,7 +43,7 @@ async def predict(file: UploadFile = File(...)):
 
     output, mask = extract_edges(img, session=session)
     
-    edges = feature.canny(mask, sigma=3)
+    edges = feature.canny(mask, sigma=5)
     edges = filters.gaussian(edges, sigma=0.3)
     edges = (edges * 255).astype(np.uint8)
 
