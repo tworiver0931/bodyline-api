@@ -94,7 +94,7 @@ async def predict(file: UploadFile = File(...)):
     output, mask = extract_edges(cropped_img, session=session)
     
     # extract edges from mask
-    edges = feature.canny(mask, sigma=4)
+    edges = feature.canny(mask, sigma=5)
     edges = (edges * 255).astype(np.uint8)
 
     kernel = np.ones((7, 7), np.uint8)
