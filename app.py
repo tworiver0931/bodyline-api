@@ -100,7 +100,7 @@ async def predict(file: UploadFile = File(...)):
     kernel = np.ones((7, 7), np.uint8)
     dilated_edges = cv2.dilate(edges, kernel, iterations=3)
 
-    smoothed_edges = cv2.GaussianBlur(dilated_edges, (5, 5), 0) 
+    smoothed_edges = cv2.GaussianBlur(dilated_edges, (6, 6), 0) 
 
     dilated_edges_rgba = cv2.cvtColor(smoothed_edges, cv2.COLOR_GRAY2RGBA)
     alpha_factor = 0.9
