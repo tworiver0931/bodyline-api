@@ -94,7 +94,7 @@ async def predict(file: UploadFile = File(...)):
     output, mask = extract_edges(cropped_img, session=session)
     
     # extract edges from mask
-    edges = feature.canny(mask, sigma=3)
+    edges = feature.canny(mask, sigma=1)
     edges = (edges * 255).astype(np.uint8)
 
     kernel = np.ones((7, 7), np.uint8)
@@ -103,7 +103,7 @@ async def predict(file: UploadFile = File(...)):
     smoothed_edges = cv2.GaussianBlur(dilated_edges, (5, 5), 0) 
 
     dilated_edges_rgba = cv2.cvtColor(smoothed_edges, cv2.COLOR_GRAY2RGBA)
-    alpha_factor = 0.8
+    alpha_factor = 0.9
     dilated_edges_rgba[:, :, 3] = (dilated_edges * alpha_factor).astype(np.uint8)
 
     output_with_edges = cv2.addWeighted(output, 1.0, dilated_edges_rgba, 1.0, 0)
