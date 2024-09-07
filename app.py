@@ -97,8 +97,8 @@ async def predict(file: UploadFile = File(...)):
     edges = feature.canny(mask, sigma=3)
     edges = (edges * 255).astype(np.uint8)
 
-    kernel = np.ones((8, 8), np.uint8)
-    dilated_edges = cv2.dilate(edges, kernel, iterations=4)
+    kernel = np.ones((7, 7), np.uint8)
+    dilated_edges = cv2.dilate(edges, kernel, iterations=3)
 
     smoothed_edges = cv2.GaussianBlur(dilated_edges, (5, 5), 0) 
 
